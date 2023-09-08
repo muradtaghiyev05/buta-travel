@@ -155,8 +155,10 @@ const MountainsPage = () => {
                   </div>
                 </div>
                 <ul className="list-disc px-4">
-                  {item.info.map((data) => (
-                    <li className="text-sm opacity-50">{data}</li>
+                  {item.info.map((data, index) => (
+                    <li key={index} className="text-sm opacity-50">
+                      {data}
+                    </li>
                   ))}
                 </ul>
                 <div className="flex items-end pt-3">
@@ -246,8 +248,10 @@ const MountainsPage = () => {
                   </div>
                 </div>
                 <ul className="list-disc px-4">
-                  {item.info.map((data) => (
-                    <li className="text-sm opacity-50">{data}</li>
+                  {item.info.map((data, index) => (
+                    <li key={index} className="text-sm opacity-50">
+                      {data}
+                    </li>
                   ))}
                 </ul>
                 <div className="flex items-end pt-3">
@@ -337,8 +341,10 @@ const MountainsPage = () => {
                   </div>
                 </div>
                 <ul className="list-disc px-4">
-                  {item.info.map((data) => (
-                    <li className="text-sm opacity-50">{data}</li>
+                  {item.info.map((data, index) => (
+                    <li key={index} className="text-sm opacity-50">
+                      {data}
+                    </li>
                   ))}
                 </ul>
                 <div className="flex items-end pt-3">
@@ -428,8 +434,10 @@ const MountainsPage = () => {
                   </div>
                 </div>
                 <ul className="list-disc px-4">
-                  {item.info.map((data) => (
-                    <li className="text-sm opacity-50">{data}</li>
+                  {item.info.map((data, index) => (
+                    <li key={index} className="text-sm opacity-50">
+                      {data}
+                    </li>
                   ))}
                 </ul>
                 <div className="flex items-end pt-3">
