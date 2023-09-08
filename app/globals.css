@@ -2,26 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  position: relative;
+  max-width: 1900px;
+  margin: 0 auto;
+}
+
+img {
+  object-fit: cover;
+}
+
+.home-hero {
+  background: url("/assets/landing1.jpg") no-repeat 70% 30%;
+  background-size: cover;
+}
+
+.mountains-hero {
+  background: url("/assets/mountain.jpg") no-repeat;
+  background-size: cover;
+}
+
+.hero:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to bottom,
+    rgba(255, 255, 255, 0) 70%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  height: 40%;
+}
+
+.nav-links {
+  background-color: white;
+  height: 100vh;
+  width: 60vw;
+  color: black;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  padding-top: 4rem;
+  transition: 0.3s;
+}
+
+.nav-links.active {
+  left: 0;
+}
+
+.category-slide {
+  width: 80px !important;
+}
+
+.vacation-slide {
+  width: 230px !important;
+  height: 150px !important;
+}
+
+.offer-slide {
+  width: 550px !important;
+  height: 220px !important;
+  box-shadow: 0px 4px 16px 0px rgba(158, 158, 158, 0.25);
+}
+
+.traveler-slide {
+  width: 240px !important;
+  height: 280px !important;
+  box-shadow: 0px 4px 16px 0px rgba(158, 158, 158, 0.25);
+}
+
+.beach-slide {
+  width: 340px !important;
+  height: 460px !important;
+  box-shadow: 0px 4px 16px 0px rgba(158, 158, 158, 0.25);
+}
+
+.download-mobile-app {
+  background: url("/assets/mobilepartbg.jpg") no-repeat;
+  background-size: cover;
+}
+
+@media screen and (min-width: 1024px) {
+  .nav-links {
+    flex-direction: row;
+    position: static;
+    height: auto;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+    color: white;
+  }
+
+  .category-slide {
+    width: 100px !important;
+  }
+
+  .vacation-slide {
+    width: 310px !important;
+    height: 200px !important;
+  }
+
+  .offer-slide {
+    width: 690px !important;
+    height: 245px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .traveler-slide {
+    width: 340px !important;
+    height: 350px !important;
+    box-shadow: 0px 4px 16px 0px rgba(158, 158, 158, 0.25);
+  }
+
+  .beach-slide {
+    width: 340px !important;
+    height: 520px !important;
+    box-shadow: 0px 4px 16px 0px rgba(158, 158, 158, 0.25);
+  }
 }

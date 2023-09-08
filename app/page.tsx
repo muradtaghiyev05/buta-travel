@@ -1,113 +1,279 @@
-import Image from 'next/image'
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+
+import Slider from "@/components/slider";
+import {
+  categories,
+  offers,
+  properties,
+  travelers,
+  vacationDestinations,
+} from "@/data";
 
 export default function Home() {
+  const [isMobileActive, setIsMobileActive] = useState(true);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="home-page">
+      <div className="home-hero hero relative h-[70vh] max-h-[800px] lg:h-screen pt-12 lg:pt-20">
+        <div className="text-white text-[2rem] md:text-7xl font-bold mt-8 mb-10 lg:mb-32 px-6 md:px-24">
+          The whole world <br /> awaits.
+        </div>
+
+        <Slider
+          className="px-6 md:px-24"
+          title="Top categories"
+          textColor="white"
+        >
+          {categories.map((item) => (
+            <SwiperSlide key={item.id} className="category-slide">
+              <Link
+                href={item.link}
+                className="flex flex-col justify-center items-center gap-1"
+              >
+                <Image src={item.icon} alt="icon" width={32} height={32} />
+                <span className="whitespace-nowrap opacity-40 text-sm md:text-base">
+                  {item.title}
+                </span>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Slider>
+
+        <Slider
+          textColor="white"
+          className="pt-6 pl-6 md:pl-24"
+          title="Top Vacation Destinations"
+        >
+          {vacationDestinations.map((item) => (
+            <SwiperSlide key={item.id} className="vacation-slide">
+              <Link href="#">
+                <Image
+                  src={item.imgUrl}
+                  alt="vacation"
+                  fill
+                  className="rounded-lg"
+                />
+                <span className="absolute bottom-4 left-4 font-medium text-lg lg:text-2xl">
+                  {item.title}
+                </span>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Slider>
+      </div>
+      <Slider className="pt-16 pl-6 md:pl-24" title="Offers">
+        {offers.map((item) => (
+          <SwiperSlide
+            key={item.id}
+            className="left-2 px-4 py-6 rounded-lg offer-slide my-4"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div className="flex gap-6 w-full">
+              <div className="relative flex-1">
+                <Image
+                  className="rounded-2xl"
+                  src={item.imgUrl}
+                  alt="offer"
+                  fill
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-between gap-4">
+                <div className="flex flex-col gap-1 text-black">
+                  <span className="opacity-50 text-sm lg:text-base">
+                    {item.type}
+                  </span>
+                  <span className="text-lg lg:text-2xl font-medium">
+                    {item.title}
+                  </span>
+                  <span className="opacity-50 text-sm lg:text-base">
+                    {item.description}
+                  </span>
+                </div>
+                <div>
+                  <button className="bg-[#2659C3] rounded-[2rem] py-2 px-4 lg:py-4 lg:px-8">
+                    Book now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Slider>
+
+      <Slider className="pl-6 md:pl-24" title="Browse by property type">
+        {properties.map((item) => (
+          <SwiperSlide key={item.id} className="vacation-slide">
+            <Link href="#">
+              <Image
+                src={item.imgUrl}
+                alt="vacation"
+                fill
+                className="rounded-lg"
+              />
+              <span className="absolute bottom-4 left-4 font-medium text-lg lg:text-2xl">
+                {item.title}
+              </span>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Slider>
+
+      <div className="relative h-[300px] lg:h-[400px] mt-16 mx-6 md:mx-24 text-white">
+        <Image className="rounded-3xl" src="/assets/plan.png" alt="plan" fill />
+        <div className="absolute left-6 top-12 lg:left-12 lg:top-24">
+          <h2 className="font-bold text-3xl lg:text-6xl pb-3 lg:pb-6">
+            Plan your trip with travel expert
+          </h2>
+          <p className="text-lg lg:text-3xl">
+            Our professional advisors can craft your perfect itinerary
+          </p>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <Slider
+        className="pl-6 md:pl-24"
+        title="Connect with other travelers in our community"
+      >
+        {travelers.map((item) => (
+          <SwiperSlide
+            key={item.id}
+            className="left-2 px-4 py-6 rounded-2xl traveler-slide my-4"
+          >
+            <div className="w-full">
+              <div className="relative h-[160px] lg:h-[200px]">
+                <Image
+                  className="rounded-2xl"
+                  src={item.imgUrl}
+                  alt="offer"
+                  fill
+                />
+              </div>
+              <div className="flex flex-col gap-0.5 lg:gap-1 text-black pt-3 lg:pt-6">
+                <span className="text-lg lg:text-2xl">{item.title}</span>
+                <span className="opacity-50 text-sm lg:text-base">
+                  {item.host}
+                </span>
+                <span className="opacity-50 text-sm lg:text-base">
+                  {item.users}
+                </span>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Slider>
+
+      <div className="download-mobile-app flex justify-center items-center lg:items-end h-[80vh] mt-10">
+        <div className="flex px-5 md:px-10 lg:px-20 justify-center text-white gap-6">
+          <div className="flex-1 hidden lg:block">
+            <div className="relative w-[260px] h-[500px]">
+              <Image
+                className="absolute top-0 left-0"
+                src="/assets/mobile-black.png"
+                alt="mobile-app"
+                fill
+              />
+              <Image
+                className="absolute top-0 left-0 p-3 pb-0"
+                src="/assets/mobile-mockup.png"
+                alt="mobile-app"
+                fill
+              />
+            </div>
+          </div>
+
+          <div className="flex-[3_3_0%]">
+            <h3 className="text-2xl lg:text-5xl font-bold">
+              Your all-in-one travel app.
+            </h3>
+            <p className="lg:text-2xl pt-6 pb-8">
+              Book flights, hotels, trains & rental cars anywhere in the world
+              in just seconds. Get real-time flight updates, travel info,
+              exclusive deals, and 30% more Trip Coins only on the app!
+            </p>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div>
+                <div>
+                  <button
+                    style={{
+                      backgroundColor: isMobileActive
+                        ? "rgba(255, 255, 255, 0.40)"
+                        : "transparent",
+                    }}
+                    className="px-4 py-2 rounded-2xl mr-6"
+                    onClick={() => setIsMobileActive(true)}
+                  >
+                    Mobile
+                  </button>
+                  <button
+                    style={{
+                      backgroundColor: isMobileActive
+                        ? "transparent"
+                        : "rgba(255, 255, 255, 0.40)",
+                    }}
+                    className="px-4 py-2 rounded-2xl"
+                    onClick={() => setIsMobileActive(false)}
+                  >
+                    Email
+                  </button>
+                </div>
+                <div>
+                  <p className="py-4 text-sm">
+                    Enter your phone number to receive a text with a link to
+                    download the app.
+                  </p>
+                  <div
+                    className="px-4 py-2 rounded-2xl flex items-center justify-between"
+                    style={{ backgroundColor: "rgba(255, 255, 255, 0.40)" }}
+                  >
+                    <div className="flex-1 flex">
+                      <span className="mr-2 text-gray-300">+994</span>
+                      <input
+                        className="bg-transparent w-full outline-none border-none placeholder:text-gray-300"
+                        type="tel"
+                        placeholder="55-111-10-10"
+                        pattern="[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                        required
+                      />
+                    </div>
+                    <button className="px-5 py-1 md:px-10 md:py-2 rounded-3xl text-sm md:text-base bg-white text-[#2659C3]">
+                      Search
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row md:flex-col items-center gap-2">
+                <div className="flex-1 h-px md:w-px bg-white opacity-20" />
+                <span>or</span>
+                <div className="flex-1 h-px md:w-px bg-white opacity-20" />
+              </div>
+              <div className="flex flex-row md:flex-col gap-2 justify-between">
+                <Link href="#">
+                  <Image
+                    src="/assets/googleplay.png"
+                    alt="play-store"
+                    width={200}
+                    height={60}
+                  />
+                </Link>
+                <Link href="#">
+                  <Image
+                    src="/assets/appstore.png"
+                    alt="app-store"
+                    width={200}
+                    height={60}
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }
